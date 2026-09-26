@@ -12,13 +12,4 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  build: {
-    // Due pagine: la landing statica alla radice (/budgeting-ross/) e l'app React in /app/.
-    rollupOptions: {
-      input: {
-        landing: fileURLToPath(new URL('./index.html', import.meta.url)),
-        app: fileURLToPath(new URL('./app/index.html', import.meta.url)),
-      },
-    },
-  },
 });
