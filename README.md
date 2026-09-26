@@ -10,9 +10,6 @@ Dashboard finanziaria per tenere i conti di un progetto: importa i tuoi costi (C
 aggiornati in una dashboard interattiva e capisci il **burn rate**, l'**utile netto** e se
 raggiungerai il **break-even** entro la data che ti sei dato (default: 6 mesi da oggi).
 
-Il sito ha due pagine: la **landing** (`index.html`, HTML statico) alla radice e l'**app**
-React in [`/app/`](https://4less4ndr0.github.io/budgeting-ross/app/) (`app/index.html`).
-
 App 100% client-side: nessun backend, nessun database. I dati restano nel browser
 (localStorage) e il file che importi non viene mai modificato — viene solo letto e copiato
 nella dashboard.
@@ -68,8 +65,6 @@ Se `brew` non è installato, prima esegui l'installer ufficiale da
 npm install
 npm run dev
 ```
-
-Landing su http://localhost:5173/budgeting-ross/, app su http://localhost:5173/budgeting-ross/app/.
 
 ## Test
 

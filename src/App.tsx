@@ -41,12 +41,7 @@ export default function App() {
           <div className="mx-auto max-w-6xl px-safe pt-6">
             <header className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between">
               <div>
-                <h1 className="text-xl font-bold tracking-tight">
-                  {/* Riporta alla landing, che sta alla radice del sito (l'app vive in /app/). */}
-                  <a href={import.meta.env.BASE_URL} className="hover:underline">
-                    Budgeting Ross
-                  </a>
-                </h1>
+                <h1 className="text-xl font-bold tracking-tight">Budgeting Ross</h1>
                 <p className="mt-1 text-sm text-muted-foreground">
                   Burn rate, runway e proiezione break-even
                 </p>
