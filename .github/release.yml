@@ -1,0 +1,26 @@
+# Come GitHub raggruppa le note generate con `gh release create --generate-notes`.
+# Ogni PR finisce nella sezione della sua label; l'ordine qui sotto è l'ordine
+# in cui le sezioni compaiono nelle note (e quindi nel popup Changelog dell'app).
+changelog:
+  categories:
+    - title: Interfaccia
+      labels: [interfaccia]
+    - title: Dashboard
+      labels: [dashboard]
+    - title: Costi & Fondi
+      labels: [costi-fondi]
+    - title: Runway & Budget
+      labels: [runway-budget]
+    - title: Categorie
+      labels: [categorie]
+    - title: Assunzioni ricavi
+      labels: [assunzioni-ricavi]
+    - title: Import/Export
+      labels: [import-export]
+    - title: Fix tecnici
+      labels: [fix-tecnici]
+    - title: Documentazione & processo
+      labels: [documentazione-processo]
+    # Rete di sicurezza: una PR senza label non sparisce, finisce qui.
+    - title: Altro
+      labels: ['*']

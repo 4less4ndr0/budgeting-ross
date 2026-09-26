@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Token set "neutral" standard di shadcn/ui (lo stesso di ui.shadcn.com), chiaro e scuro.
+   Il tema scuro si attiva con la classe `dark` sull'elemento <html> (vedi ThemeToggle). */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+
+    --radius: 0.6rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    /* Senza questo iOS ingrandisce da solo il testo ruotando in orizzontale. */
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    /* Toglie il rettangolo grigio che iOS lampeggia su ogni elemento toccato: gli stati
+       :active/:focus dei componenti danno già il riscontro visivo. */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Safari (macOS + iOS) centers the value of native date inputs by default,
+     unlike every other input — left-align it to match the rest of the form. */
+  input[type='date']::-webkit-date-and-time-value {
+    text-align: left;
+  }
+  input[type='date']::-webkit-datetime-edit {
+    text-align: left;
+  }
+}
+
+@layer utilities {
+  /* Safe area degli iPhone con notch/Dynamic Island. Il `max()` tiene il padding attuale
+     (px-5 = 1.25rem) quando l'inset è zero — cioè su desktop e in verticale — e lo allarga
+     solo dove serve davvero, in orizzontale con il notch a lato. */
+  .px-safe {
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+  }
+
+  /* Spazio in fondo alla pagina, sopra la home indicator. */
+  .pb-safe {
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+  }
+
+  /* Sfumatura ai bordi di un contenitore che scorre in orizzontale, per far capire che
+     c'è altro contenuto oltre il bordo. Funziona senza JavaScript sfruttando
+     background-attachment: i due strati "coperchio" (local) scorrono col contenuto e
+     coprono l'ombra sottostante (scroll, ancorata al riquadro) quando si è arrivati a
+     fine corsa — quindi la sfumatura si vede solo dal lato in cui c'è ancora da scorrere. */
+  .scroll-fade-x {
+    /* I due "coperchi" restano pienamente opachi per i primi 18px — cioè più dell'ombra,
+       larga 16 — e solo dopo sfumano: senza questo tratto pieno l'ombra traspariva appena
+       anche quando non c'era niente da scorrere. */
+    background-image:
+      linear-gradient(to right, hsl(var(--background)) 0 18px, hsl(var(--background) / 0) 32px),
+      linear-gradient(to left, hsl(var(--background)) 0 18px, hsl(var(--background) / 0) 32px),
+      linear-gradient(to right, hsl(var(--foreground) / 0.14), hsl(var(--foreground) / 0)),
+      linear-gradient(to left, hsl(var(--foreground) / 0.14), hsl(var(--foreground) / 0));
+    background-position:
+      left center,
+      right center,
+      left center,
+      right center;
+    background-repeat: no-repeat;
+    background-size:
+      32px 100%,
+      32px 100%,
+      16px 100%,
+      16px 100%;
+    background-attachment: local, local, scroll, scroll;
+  }
+}
